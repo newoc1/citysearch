@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" ng-app="citySearchApp">
+<head>
+  <title>City Search</title>
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/app/components/home/home-controller.js"></script>
+</head>
+<body ng-controller="HomeController">
+  <ul>
+    <li ng-repeat="city in cities">
+      <span>{{city.name}}</span>
+    </li>
+  </ul>
+</body>
+</html>
