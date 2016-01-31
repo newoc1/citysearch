@@ -1,0 +1,9 @@
+[ { "_class" : "grok.citysearch.model.Commodity",
+ 	"name" : "Bananas"
+},
+  { "_class" : "grok.citysearch.model.Commodity",
+ 	"name" : "Iron"
+},{ "_class" : "grok.citysearch.model.Commodity",
+ 	"name" : "Lumber"
+} ]
+

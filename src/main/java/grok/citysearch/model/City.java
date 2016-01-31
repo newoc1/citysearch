@@ -53,4 +53,20 @@ public class City {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public int getUserRankRequired() {
+		return userRankRequired;
+	}
+
+	public void setUserRankRequired(int userRankRequired) {
+		this.userRankRequired = userRankRequired;
+	}
+
+	public List<Commodity> getWantedCommodities() {
+		return wantedCommodities;
+	}
+
+	public void setWantedCommodities(List<Commodity> wantedCommodities) {
+		this.wantedCommodities = wantedCommodities;
+	}
 }

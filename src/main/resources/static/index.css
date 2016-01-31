@@ -1,0 +1,26 @@
+body {
+  background: rgb(31, 31, 31);
+  color: white;
+}
+
+.city {
+  border: 1px solid rgb(42, 78, 133);
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 1.2em;
+  height: 200px;
+  margin: 1em;
+  padding: .5em;
+  text-align: center;
+  transition: border 1s;
+  width: 200px;
+  vertical-align: middle;
+}
+
+.city a {
+  color: rgb(250, 220, 152);
+}
+
+.city:hover {
+  border: 1px solid rgb(96, 157, 184);
+}
