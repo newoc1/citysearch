@@ -1,6 +1,6 @@
 package grok.citysearch.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,15 +27,19 @@ public class City {
 	@JoinTable(name = "CITY_COMMODITY", joinColumns = {
 			@JoinColumn(name = "CITY_ID", referencedColumnName = "ID") }, inverseJoinColumns =
 				{@JoinColumn(name = "COMMODITY_ID", referencedColumnName = "ID") })
-	private List<Commodity> wantedCommodities;
+	private Set<Commodity> wantedCommodities;
+	
+	@Column(name="POPULATION_COUNT", nullable=false)
+	private long populationCount;
 
 	protected City() {
 
 	}
 
-	public City(String name) {
+	public City(String name, long populationCount) {
 		this.setId(id);
 		this.setName(name);
+		this.populationCount = populationCount;
 	}
 
 	public String getName() {
@@ -62,11 +66,19 @@ public class City {
 		this.userRankRequired = userRankRequired;
 	}
 
-	public List<Commodity> getWantedCommodities() {
+	public Set<Commodity> getWantedCommodities() {
 		return wantedCommodities;
 	}
 
-	public void setWantedCommodities(List<Commodity> wantedCommodities) {
+	public void setWantedCommodities(Set<Commodity> wantedCommodities) {
 		this.wantedCommodities = wantedCommodities;
+	}
+
+	public long getPopulationCount() {
+		return populationCount;
+	}
+
+	public void setPopulationCount(long populationCount) {
+		this.populationCount = populationCount;
 	}
 }

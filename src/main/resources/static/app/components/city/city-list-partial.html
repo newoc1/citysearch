@@ -1,5 +1,6 @@
 
-<div class="city" ng-repeat="city in cities">
+<div class="city" ng-repeat="city in cities" ng-class="citySize(city)">
    <a href="#/cities/{{city.id}}"><span>View {{city.name}}</span></a>
+   <div>Population: {{city.populationCount}}</div>
    <div ng-repeat="wantedCommodity in city.wantedCommodities">{{wantedCommodity.name}}</div>
 </div>

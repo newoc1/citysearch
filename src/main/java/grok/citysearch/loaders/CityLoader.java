@@ -7,9 +7,11 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
+import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,12 +28,22 @@ public class CityLoader implements Loader {
 	private CityRepository cityRepository;
 	@Autowired
 	private CommodityRepository commodityRepository;
+	@Autowired
+	private Random random;
+	
+	private int numberOfCities;
+	private int cityCommoditiesCount;
+	private long maxPopulationCount;
 
+	public CityLoader(int numberOfCities, int cityCommoditiesCount, long maxPopulationCount){
+		this.numberOfCities = numberOfCities;
+		this.cityCommoditiesCount = cityCommoditiesCount;
+		this.maxPopulationCount = maxPopulationCount;
+	}
 	/**
 	 * Assumes commodities are already loaded.
 	 */
 	public void populate(){
-		int numberOfCities = 100;
 		System.out.println("Creating cities....");
 		Charset charset = Charset.forName("US-ASCII");
 		Path filePath = null;
@@ -41,10 +53,10 @@ public class CityLoader implements Loader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<Commodity> commodities = commodityRepository.findAll();
+		List<Commodity> availableCommodities = commodityRepository.findAll();
 		
 		System.out.println("All available commodities.");
-		for(Commodity commodity: commodities){
+		for(Commodity commodity: availableCommodities){
 			System.out.println(commodity.getName());
 		}
 		try (BufferedReader reader = Files.newBufferedReader(filePath, charset)) {
@@ -56,8 +68,9 @@ public class CityLoader implements Loader {
 					String cityName = extractCityName(line);
 
 					if (cityRepository.findByName(cityName) == null) {
-						City city = new City(cityName);
-						city.setWantedCommodities(commodities);
+						long populationCount = (long) (random.nextDouble()*maxPopulationCount);
+						City city = new City(cityName, populationCount);
+						city.setWantedCommodities(chooseRandomCommodities(cityCommoditiesCount, availableCommodities));
 						cityRepository.save(city);
 						i++;
 					}
@@ -79,6 +92,15 @@ public class CityLoader implements Loader {
 	 */
 	public String extractCityName(String csvLine) {
 		return csvLine.split(",")[2];
+	}
+	
+	public Set<Commodity> chooseRandomCommodities(int commoditiesCount, List<Commodity> availableCommodities){
+		Set<Commodity> commodities = new HashSet<>();
+		for(int i = 0; commodities.size() < commoditiesCount; i++){
+			int commodityIndex = random.nextInt(availableCommodities.size()-1);
+			commodities.add(availableCommodities.get(commodityIndex));	
+		}
+		return commodities;
 	}
 	
 }
