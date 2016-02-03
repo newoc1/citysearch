@@ -1,33 +1,56 @@
 body {
-  background: rgb(31, 31, 31);
-  color: white;
-}
-.small-city{
-  width:200px;
-  height:200px;
-  background-color: rgb(97, 123, 124);
+  background: rgb(3, 9, 96);
+  color: rgb(242, 242, 230);
+  font-family: 'Open+Sans', sans-serif;
+  text-shadow: 0px 0px 3px rgb(242, 242, 230);
 }
 
-.medium-city{
-  width:300px;
-  height:300px;
-  background-color:rgb(26, 108, 47);
+.small-city {
+  background-color: rgb(84, 137, 171);
+  width: 15em;
+  height: 15em;
 }
-.big-city{
-  width:400px;
-  height:400px;
-  background-color:rgb(111, 30, 30);
+
+.medium-city {
+  background-color: rgb(55, 116, 173);
+  width: 20em;
+  height: 20em;
 }
+
+.big-city {
+  background-color: rgb(57, 89, 136);
+  height: 30em;
+  width: 30em;
+}
+
+.city-container {
+  /*This serves as the flex-box container for the individual city element.*/
+  align-items: center; /* align vertical */
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: center; /* align horizontal */
+}
+
 .city {
-  border: 3px solid rgb(42, 78, 133);
+
+  /*Elements with the city class are flex-box-items, but are also flex-box containers
+  for their elements that are dynamically populated*/
+  align-items: center; /* align vertical */
+  border: 1px solid rgb(41, 195, 210);
   border-radius: 50%;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
   font-size: 1.2em;
+  justify-content: center; /* align horizontal */
   margin: 1em;
   padding: .5em;
+  transition: border .3s, box-shadow .3s;
+}
+
+.city-content {
   text-align: center;
-  transition: border 1s;
-  vertical-align: middle;
 }
 
 .city a {
@@ -35,5 +58,7 @@ body {
 }
 
 .city:hover {
-  border: 3px solid rgb(96, 157, 184);
+  border: 1px solid rgb(154, 238, 252);
+  box-shadow: 0px 0px 5px rgb(154, 238, 252);
+  cursor: pointer;
 }
