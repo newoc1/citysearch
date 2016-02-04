@@ -5,12 +5,15 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import grok.citysearch.loaders.ApplicationUserLoader;
 import grok.citysearch.loaders.CityLoader;
 import grok.citysearch.loaders.CommodityLoader;
 
 @Component
 public class TestDataPopulator {
 
+	@Autowired
+	private ApplicationUserLoader applicationUserLoader;
 	@Autowired
 	private CityLoader cityLoader;
 	@Autowired
@@ -22,6 +25,7 @@ public class TestDataPopulator {
 	 */
 	@PostConstruct
 	private void populate(){
+		applicationUserLoader.populate();
 		commodityLoader.populate();
 		cityLoader.populate();
 	}

@@ -55,10 +55,6 @@ public class CityLoader implements Loader {
 		}
 		List<Commodity> availableCommodities = commodityRepository.findAll();
 		
-		System.out.println("All available commodities.");
-		for(Commodity commodity: availableCommodities){
-			System.out.println(commodity.getName());
-		}
 		try (BufferedReader reader = Files.newBufferedReader(filePath, charset)) {
 			String line = null;
 			int i = 0;
