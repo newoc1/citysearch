@@ -14,10 +14,13 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.9",
+    "angular": "v1.5.0-build.4589+sha.260cfe6",
     "bootstrap": "~3.3.6",
     "jasmine-core": "jasmine#~2.4.1",
     "angular-route": "~1.4.9",
     "angular-resource": "^1.4.9"
+  },
+  "resolutions": {
+    "angular": "v1.5.0-build.4589+sha.260cfe6"
   }
 }

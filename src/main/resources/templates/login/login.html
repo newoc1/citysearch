@@ -2,15 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>City Search Login</title>
+<link rel="stylesheet" href="/styles/login.css"/>
 </head>
-<body onload="document.f.username.focus();">
-	<div class="content">
+<body>
+	<div >
 		<p th:if="${param.logout}" >You have been logged out</p>
 		<p th:if="${param.error}" >There was an error, please try again</p>
 		<form name="form" th:action="@{/login}" action="/login" method="POST">
 			<fieldset>
 				<input type="text" name="username" value="" placeholder="Username" />
 				<input type="password" name="password" placeholder="Password" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</fieldset>
 			<input type="submit" id="login" value="Login" />
 		</form>
