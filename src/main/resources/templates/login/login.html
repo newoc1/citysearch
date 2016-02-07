@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>City Search Login</title>
-<link rel="stylesheet" href="/styles/login.css"/>
-</head>
+	<head>
+		<title>City Search Login</title>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'></link>
+		<link rel="stylesheet" href="/styles/login.css"></link>
+	</head>
 <body>
-	<div >
-		<p th:if="${param.logout}" >You have been logged out</p>
-		<p th:if="${param.error}" >There was an error, please try again</p>
-		<form name="form" th:action="@{/login}" action="/login" method="POST">
-			<fieldset>
-				<input type="text" name="username" value="" placeholder="Username" />
-				<input type="password" name="password" placeholder="Password" />
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			</fieldset>
-			<input type="submit" id="login" value="Login" />
-		</form>
+	<div id="login-modal-container">
+		<div id="login-modal">
+			<div id="login-modal-content-container">
+				<h2>City Search Login</h2>
+				<p th:if="${param.logout}">You have been logged out</p>
+				<p th:if="${param.error}">There was an error, please try again</p>
+				<form id="login-form" name="form" th:action="@{/login}" action="/login" method="post">
+					<fieldset>
+						<input type="text" name="username" value="" placeholder="Username"></input>
+						<input type="password" name="password" placeholder="Password"></input>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"></input>
+					</fieldset>
+					<div id="login-button-container">
+						<input type="submit" id="login-button" value="Login"></input>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
