@@ -44,8 +44,11 @@ body{
   justify-content: center;
   padding:0.5em;
   margin:0.5em;
+  text-align:center;
 }
-#login-modal-content-container p{
+
+#login-modal-content-container span{
   padding:0.5em;
-  margin:0.5em;  
+  margin:0.5em;
+
 }

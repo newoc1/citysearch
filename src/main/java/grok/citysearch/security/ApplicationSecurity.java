@@ -12,7 +12,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/styles/**").permitAll().anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").permitAll().failureUrl("/login?error").and().logout().logoutUrl("/logout").and().exceptionHandling().accessDeniedPage("/access?error");
+				.loginPage("/login").permitAll().failureUrl("/login?error")
+				.and().logout().logoutUrl("/logout").permitAll()
+				.and().exceptionHandling().accessDeniedPage("/access?error");
 	}
 
 }

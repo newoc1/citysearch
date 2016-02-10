@@ -10,8 +10,8 @@
 		<div id="login-modal">
 			<div id="login-modal-content-container">
 				<h2>City Search Login</h2>
-				<p th:if="${param.logout}">You have been logged out</p>
-				<p th:if="${param.error}">There was an error, please try again</p>
+				<span th:if="${param.logout}">You have been logged out</span>
+				<span th:if="${param.error}">There was an error, please try again</span>
 				<form id="login-form" name="form" th:action="@{/login}" action="/login" method="post">
 					<fieldset>
 						<input type="text" name="username" value="" placeholder="Username"></input>

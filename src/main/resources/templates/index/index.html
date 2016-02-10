@@ -5,11 +5,13 @@
   <meta name="_csrf" th:value="${_csrf.token}"/>
   <!-- default header name is X-CSRF-TOKEN -->
   <meta name="_csrf_header" th:value="${_csrf.headerName}"/>
+  <meta name="_csrf_parameterName" th:value="${_csrf.parameterName}"/>
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"></link>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'></link>
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-touch/angular-touch.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="/app/city-search.js"></script>
@@ -19,6 +21,11 @@
   <link rel="stylesheet" href="/styles/index.css"></link>
 </head>
 <body>
+<form id="logout-form" name="logout-form" th:action="@{/logout}"  method="post">
+  <div id="logout-button-container">
+    <input type="submit" id="logout-button" value="Logout"></input>
+  </div>
+</form>
 <div ng-view=""></div>
 </body>
 </html>
