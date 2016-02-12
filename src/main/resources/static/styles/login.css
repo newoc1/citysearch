@@ -37,7 +37,7 @@ body{
   justify-content: center;
 }
 #login-modal-content-container{
-  align-content: center;;
+  align-content: center;
   display:flex;
   flex-direction: column;
   flex-flow: column wrap;
