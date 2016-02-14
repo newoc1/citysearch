@@ -1,12 +1,10 @@
 package grok.citysearch.service;
 
-import java.net.URISyntaxException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import grok.citysearch.loaders.CityLoader;
 import grok.citysearch.model.City;
 import grok.citysearch.repository.CityRepository;
 
@@ -16,8 +14,8 @@ public class CityService {
 	@Autowired
 	private CityRepository cityRepository;
 	
-	public List<City> findCities(){
-		return cityRepository.findAll();
+	public Page<City> findCities(Pageable pageable){
+		return cityRepository.findAll(pageable);
 	}
 	
 	public City get(Long cityId) {

@@ -2,7 +2,9 @@ var cityControllers = angular.module('cityControllers', []);
 
 cityControllers.controller('cityController', ['$scope', '$location', 'City', function(
   $scope, $location, City) {
-  $scope.cities = City.rest.query();
+  $scope.cities = City.rest.query(function(data) {
+    $scope.cities = data.content;
+  });
   $scope.citySize = City.citySize;
   $scope.viewCity = function(cityId) {
     $location.path('/cities/' + cityId);

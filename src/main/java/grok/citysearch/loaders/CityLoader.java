@@ -66,7 +66,6 @@ public class CityLoader implements Loader {
 					if (cityRepository.findByName(cityName) == null) {
 						long populationCount = (long) (random.nextDouble()*maxPopulationCount);
 						City city = new City(cityName, populationCount);
-						city.setWantedCommodities(chooseRandomCommodities(cityCommoditiesCount, availableCommodities));
 						cityRepository.save(city);
 						i++;
 					}

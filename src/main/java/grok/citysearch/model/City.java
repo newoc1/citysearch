@@ -1,35 +1,34 @@
 package grok.citysearch.model;
 
 import java.util.Set;
+import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 
-@Entity
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.solr.core.mapping.Indexed;
+import org.springframework.data.solr.core.mapping.SolrDocument;
+
+@SolrDocument(solrCoreName = "collection1")
 public class City {
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
-	private Long id;
+	@Indexed
+	@Field
+	private String id;
 	
-	@Column(name="NAME",unique = true, nullable = false)
+	@Field
 	private String name;
 
-	@Column(name = "USER_RANK_REQUIRED")
+	@Field("user_rank_required_i")
 	private int userRankRequired;
 
-	@ManyToMany
-	@JoinTable(name = "CITY_COMMODITY", joinColumns = {
-			@JoinColumn(name = "CITY_ID", referencedColumnName = "ID") }, inverseJoinColumns =
-				{@JoinColumn(name = "COMMODITY_ID", referencedColumnName = "ID") })
+	@Field("wanted_commodities_s")
 	private Set<Commodity> wantedCommodities;
 	
-	@Column(name="POPULATION_COUNT", nullable=false)
+	@Field("population_count_l")
 	private long populationCount;
 
 	protected City() {
@@ -50,12 +49,13 @@ public class City {
 		this.name = name;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	@PrePersist
+	public void setId(String id) {
+		  this.id = UUID.randomUUID().toString();
 	}
 	
 	public int getUserRankRequired() {
