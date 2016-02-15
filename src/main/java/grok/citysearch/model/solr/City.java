@@ -1,5 +1,7 @@
-package grok.citysearch.model;
+package grok.citysearch.model.solr;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,18 +26,19 @@ public class City {
 
 	@Field("user_rank_required_i")
 	private int userRankRequired;
-
-	@Field("wanted_commodities_s")
-	private Set<Commodity> wantedCommodities;
+	
+	@Field("wanted_commodity_names_ss")
+	private Set<String> wantedCommodityNames;
 	
 	@Field("population_count_l")
 	private long populationCount;
 
 	protected City() {
-
+		this.wantedCommodityNames = new HashSet<>();
 	}
 
 	public City(String name, long populationCount) {
+		this();
 		this.setId(id);
 		this.setName(name);
 		this.populationCount = populationCount;
@@ -66,12 +69,12 @@ public class City {
 		this.userRankRequired = userRankRequired;
 	}
 
-	public Set<Commodity> getWantedCommodities() {
-		return wantedCommodities;
+	public Set<String> getWantedCommodityNames() {
+		return wantedCommodityNames;
 	}
 
-	public void setWantedCommodities(Set<Commodity> wantedCommodities) {
-		this.wantedCommodities = wantedCommodities;
+	public void addWantedSolrCommodity(SolrCommodity solrCommodity) {
+		this.wantedCommodityNames.add(solrCommodity.getName());
 	}
 
 	public long getPopulationCount() {

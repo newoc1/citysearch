@@ -16,10 +16,12 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import grok.citysearch.model.City;
 import grok.citysearch.model.Commodity;
-import grok.citysearch.repository.CityRepository;
+import grok.citysearch.model.solr.City;
+import grok.citysearch.model.solr.SolrCommodity;
 import grok.citysearch.repository.CommodityRepository;
+import grok.citysearch.repository.solr.CityRepository;
+import grok.citysearch.solr_converter.CommodityConverter;
 
 @Component
 public class CityLoader implements Loader {
@@ -54,7 +56,7 @@ public class CityLoader implements Loader {
 			e.printStackTrace();
 		}
 		List<Commodity> availableCommodities = commodityRepository.findAll();
-		
+		cityRepository.deleteAll();
 		try (BufferedReader reader = Files.newBufferedReader(filePath, charset)) {
 			String line = null;
 			int i = 0;
@@ -66,6 +68,12 @@ public class CityLoader implements Loader {
 					if (cityRepository.findByName(cityName) == null) {
 						long populationCount = (long) (random.nextDouble()*maxPopulationCount);
 						City city = new City(cityName, populationCount);
+						Set<Commodity> wantedCommodities = chooseRandomCommodities(cityCommoditiesCount, availableCommodities);
+						
+						for(Commodity commodity: wantedCommodities) {
+							city.addWantedSolrCommodity(CommodityConverter.convert(commodity));
+						}
+						
 						cityRepository.save(city);
 						i++;
 					}

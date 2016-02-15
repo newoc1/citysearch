@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import grok.citysearch.model.City;
-import grok.citysearch.repository.CityRepository;
+import grok.citysearch.model.solr.City;
+import grok.citysearch.repository.solr.CityRepository;
 
 @Service
 public class CityService {
@@ -18,7 +18,7 @@ public class CityService {
 		return cityRepository.findAll(pageable);
 	}
 	
-	public City get(Long cityId) {
+	public City get(String cityId) {
 		return cityRepository.findOne(cityId);
 	}
 }

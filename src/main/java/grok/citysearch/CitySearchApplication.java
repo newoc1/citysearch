@@ -77,6 +77,10 @@ public class CitySearchApplication extends WebMvcConfigurerAdapter {
 		return new ApplicationSecurity();
 	}
 
+	/**
+	 * Defines the client connection to a solr server.
+	 * @return
+	 */
 	@Bean
 	public SolrServer solrServer() {
 		String solrHost = environment.getRequiredProperty(SOLR_HOST);
@@ -84,6 +88,10 @@ public class CitySearchApplication extends WebMvcConfigurerAdapter {
 		return solrServer;
 	}
 
+	/**
+	 * Bean that allows more advanced queries. For example using {@link Facet} for solr queries.
+	 * @return
+	 */
 	@Bean
 	public SolrOperations solrTemplate() {
 		return new SolrTemplate(solrServer());
