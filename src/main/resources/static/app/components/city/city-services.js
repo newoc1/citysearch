@@ -6,7 +6,8 @@ cityServices.factory('City', ['$resource',
       query: {
         method: 'GET',
         params: {
-          cityId: ''
+          cityId: '',
+          page: 0
         }
       }
     });

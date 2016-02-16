@@ -1,29 +1,36 @@
+/*Colors: #05668d, #028090, #00a896, #02c39a, #f0f3bd*/
 body {
-  background: rgb(10, 18, 57);
-  color: rgb(242, 242, 230);
+  background: #05668d;
+  color: #f0f3bd;
   font-family: 'Open+Sans', sans-serif;
-  text-shadow: 0px 0px 3px rgb(242, 242, 230);
+  text-shadow: 0px 0px 3px #f0f3bd;
 }
 
 .small-city {
-  background-color: rgb(84, 137, 171);
-  width: 15em;
-  height: 15em;
+
+  /*set on small cities via a function*/
 }
 
 .medium-city {
-  background-color: rgb(55, 116, 173);
-  width: 20em;
-  height: 20em;
+
+  /*set on medium cities via a function*/
 }
 
 .big-city {
-  background-color: rgb(57, 89, 136);
-  height: 30em;
-  width: 30em;
+
+  /*set on big cities via a function*/
+}
+
+.button-default {
+  background-color: #00a896;
+  border: 1px solid #f0f3bd;
+  border-radius: 5%;
+  font-weight:bold;
+  padding:0.5em;
 }
 
 .city-container {
+
   /*This serves as the flex-box container for the individual city element.*/
   align-items: center; /* align vertical */
   display: flex;
@@ -37,7 +44,9 @@ body {
   /*Elements with the city class are flex-box-items, but are also flex-box containers
   for their elements that are dynamically populated*/
   align-items: center; /* align vertical */
-  border: 1px solid rgb(41, 195, 210);
+  background-color: #028090;
+  border: 1px solid #f0f3bd;
+  border-radius: 5%;
   display: flex;
   flex-direction: column;
   flex-flow: row wrap;
@@ -57,13 +66,20 @@ body {
 }
 
 .city:hover {
-  border: 1px solid rgb(154, 238, 252);
-  box-shadow: 0px 0px 5px rgb(154, 238, 252);
+  border: 1px solid #02c39a;
+  box-shadow: 0px 0px 10px #02c39a;
   cursor: pointer;
 }
 
-#logout-button {
-  background-color: rgb(5, 99, 85);
-  border: 1px solid rgb(154, 238, 252);
-  box-shadow: 0px 0px 5px rgb(154, 238, 252);
+#city-pagination-container {
+  align-items: center; /* align vertical */
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  font-size: 1.2em;
+  justify-content: center; /* align horizontal */
+  margin: 0.5em;
+}
+#city-pagination-container button {
+  margin: 0.5em;
 }

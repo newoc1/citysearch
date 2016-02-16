@@ -1,0 +1,15 @@
+/*Colors: #05668d, #028090, #00a896, #02c39a, #f0f3bd*/
+#logout-button {
+  background-color: #00a896;
+  border: 1px solid #f0f3bd;
+  border-radius: 5%;
+  font-weight:bold;
+  padding:0.5em;
+}
+#logout-button:hover {
+  background-color: #02c39a;
+}
+.navbar-component {
+  background-color: #028090;
+  padding:0.5em;
+}
