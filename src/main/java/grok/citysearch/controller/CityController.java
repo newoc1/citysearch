@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import grok.citysearch.model.solr.City;
@@ -17,9 +18,10 @@ public class CityController {
 	private CityService cityService;
 	
 	@RequestMapping("/cities")
-	public Page<City> findCities(Pageable pageable) {
-		return cityService.findCities(pageable); 
+	public Page<City> findCities( @RequestParam(required=false) String name, Pageable pageable) {
+		return cityService.findCities(name, pageable); 
 	}
+	
 	
 	@RequestMapping("cities/{cityId}")
 	public City get(@PathVariable String cityId) {

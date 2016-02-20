@@ -1,5 +1,6 @@
 <cs-navbar></cs-navbar>
 <div id="city-pagination-container">
+  <input id="city-search-bar" type="text" ng-change="findCities()" ng-model="cityName" placeholder="Search"></input>
   <button class="button-default" ng-click="previousPage()" ng-hide="isFirstPage">Previous Page</button>
   <button class="button-default" ng-click="nextPage()" ng-hide="isLastPage">Next Page</button>
 </div>

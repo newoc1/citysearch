@@ -21,7 +21,8 @@ public class City {
 	@Field
 	private String id;
 	
-	@Field
+	@Field("name")
+	@Indexed("name")
 	private String name;
 
 	@Field("user_rank_required_i")

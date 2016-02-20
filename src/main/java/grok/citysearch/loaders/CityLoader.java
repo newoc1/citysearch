@@ -7,27 +7,31 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import grok.citysearch.model.Commodity;
 import grok.citysearch.model.solr.City;
-import grok.citysearch.model.solr.SolrCommodity;
 import grok.citysearch.repository.CommodityRepository;
 import grok.citysearch.repository.solr.CityRepository;
+import grok.citysearch.service.CityService;
 import grok.citysearch.solr_converter.CommodityConverter;
 
 @Component
 public class CityLoader implements Loader {
-
+	//HACK
 	@Autowired
 	private CityRepository cityRepository;
+	
+	@Autowired
+	private CityService cityService;
 	@Autowired
 	private CommodityRepository commodityRepository;
 	@Autowired
@@ -60,12 +64,14 @@ public class CityLoader implements Loader {
 		try (BufferedReader reader = Files.newBufferedReader(filePath, charset)) {
 			String line = null;
 			int i = 0;
+			//need default pageable instance to provide to solr
+			Pageable pageable = new PageRequest(0, 20);
 			while ((line = reader.readLine()) != null && i < numberOfCities) {
 				//need to skip header
 				if (i != 0) {
 					String cityName = extractCityName(line);
-
-					if (cityRepository.findByName(cityName) == null) {
+					
+					if (cityName != null && !cityService.findCities(cityName,pageable).hasContent()) {
 						long populationCount = (long) (random.nextDouble()*maxPopulationCount);
 						City city = new City(cityName, populationCount);
 						Set<Commodity> wantedCommodities = chooseRandomCommodities(cityCommoditiesCount, availableCommodities);

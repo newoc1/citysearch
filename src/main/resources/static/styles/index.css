@@ -30,13 +30,14 @@ body {
 }
 
 .city-container {
-
   /*This serves as the flex-box container for the individual city element.*/
   align-items: center; /* align vertical */
   display: flex;
   flex-direction: column;
   flex-flow: row wrap;
   justify-content: center; /* align horizontal */
+  margin-left: 10vw;
+  margin-right: 10vw;
 }
 
 .city {
@@ -82,4 +83,10 @@ body {
 }
 #city-pagination-container button {
   margin: 0.5em;
+}
+#city-search-bar {
+  border: 1px solid #f0f3bd;
+  color:#000000;
+  margin: 0.5em;
+  padding:0.5em;
 }

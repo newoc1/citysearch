@@ -3,9 +3,18 @@ var cityControllers = angular.module('cityControllers', []);
 cityControllers.controller('cityController', ['$scope', '$location', 'City', function(
   $scope, $location, City) {
   $scope.page = 0;
+  $scope.cityName = null;
   $scope.findCities = function() {
+    //Need to set cityName explicitly to null so that it is not parsed as a query param
+    if (!$scope.cityName) {
+      $scope.cityName = null;
+    } else {
+      //need to reset $scope.page to 0. Otherwise we might retrieve data but be on page 12 and not see it
+      $scope.page = 0;
+    }
     City.rest.query({
-      'page': $scope.page
+      'page': $scope.page,
+      'name': $scope.cityName
     }, function(data) {
       $scope.cities = data.content;
       $scope.isFirstPage = data.first;
