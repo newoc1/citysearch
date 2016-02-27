@@ -5,5 +5,7 @@
  	"name" : "Iron"
 },{ "_class" : "grok.citysearch.model.Commodity",
  	"name" : "Lumber"
+}, { "_class": "grok.citysearch.model.Commodity",
+	"name" : "Gold"
 } ]
 
