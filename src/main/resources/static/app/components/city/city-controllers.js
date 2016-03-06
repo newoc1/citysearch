@@ -12,7 +12,7 @@ cityControllers.controller('cityController', ['$scope', '$location', 'City', fun
       //need to reset $scope.page to 0. Otherwise we might retrieve data but be on page 12 and not see it
       $scope.page = 0;
     }
-    City.rest.query({
+    City.rest.findCities.query({
       'page': $scope.page,
       'name': $scope.cityName
     }, function(data) {
@@ -45,10 +45,22 @@ cityControllers.controller('cityController', ['$scope', '$location', 'City', fun
 cityControllers.controller('cityDetailController', ['$scope', '$routeParams',
   'City',
   function($scope, $routeParams, City) {
-    City.rest.get({
+
+
+    City.rest.findCities.get({
       cityId: $routeParams.cityId
     }, function(city) {
       $scope.city = city;
     });
+
+    $scope.giveCommodity = function() {
+
+      City.rest.cityCommodities.give({
+        cityId: $routeParams.cityId,
+        commodity: 'gold'
+      }, function() {
+        alert('hello world');
+      });
+    };
   }
 ]);
