@@ -1,4 +1,4 @@
-package grok.citysearch.service;
+package grok.citysearch.city;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,8 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import grok.citysearch.model.solr.City;
-import grok.citysearch.repository.solr.CityRepository;
+import grok.citysearch.commodity.Commodity;
 
 @Service
 public class CityService {
@@ -59,4 +58,5 @@ public class CityService {
 	public City get(String cityId) {
 		return cityRepository.findOne(cityId);
 	}
+	
 }

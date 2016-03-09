@@ -1,12 +1,9 @@
-package grok.citysearch.service;
+package grok.citysearch.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import grok.citysearch.model.ApplicationUser;
-import grok.citysearch.repository.ApplicationUserRepository;
 
 @Service
 public class ApplicationUserService {
@@ -15,6 +12,10 @@ public class ApplicationUserService {
 	private ApplicationUserRepository applicationUserRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	public ApplicationUser get(String username) {
+		return applicationUserRepository.findOneByUsername(username);
+	}
 	
 	public void save(ApplicationUser applicationUser){
 		applicationUser.setPassword(passwordEncoder.encode(applicationUser.getPassword()));

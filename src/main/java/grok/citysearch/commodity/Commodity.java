@@ -1,4 +1,4 @@
-package grok.citysearch.model;
+package grok.citysearch.commodity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

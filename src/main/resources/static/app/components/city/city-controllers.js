@@ -53,11 +53,11 @@ cityControllers.controller('cityDetailController', ['$scope', '$routeParams',
       $scope.city = city;
     });
 
-    $scope.giveCommodity = function() {
+    $scope.giveCommodity = function(commodityId) {
 
       City.rest.cityCommodities.give({
         cityId: $routeParams.cityId,
-        commodity: 'gold'
+        commodityId: commodityId
       }, function() {
         alert('hello world');
       });

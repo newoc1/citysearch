@@ -1,4 +1,4 @@
-package grok.citysearch.model.solr;
+package grok.citysearch.city;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +12,8 @@ import javax.persistence.PrePersist;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
+
+import grok.citysearch.commodity.SolrCommodity;
 
 @SolrDocument(solrCoreName = "collection1")
 public class City {
@@ -76,6 +78,10 @@ public class City {
 
 	public void addWantedSolrCommodity(SolrCommodity solrCommodity) {
 		this.wantedCommodityNames.add(solrCommodity.getName());
+	}
+	
+	public void removeWantedSolrCommodity(SolrCommodity solrCommodity) {
+		this.wantedCommodityNames.remove(solrCommodity.getName());
 	}
 
 	public long getPopulationCount() {

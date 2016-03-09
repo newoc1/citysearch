@@ -1,8 +1,6 @@
-package grok.citysearch.solr_converter;
+package grok.citysearch.commodity;
 
-import grok.citysearch.model.Commodity;
-import grok.citysearch.model.solr.City;
-import grok.citysearch.model.solr.SolrCommodity;
+import grok.citysearch.city.City;
 
 /**
  * Handles converting a {@link Commodity} into a suitable format for A {@link City} solr document.

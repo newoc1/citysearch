@@ -13,17 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import grok.citysearch.model.Commodity;
-import grok.citysearch.model.solr.City;
-import grok.citysearch.service.CityService;
+import grok.citysearch.city.City;
+import grok.citysearch.city.CityService;
+import grok.citysearch.common.mediator.CommodityExchange;
+
 
 @RestController
 public class CityController {
 
-	@Autowired
 	private CityService cityService;
-	@Autowired
 	private UserDetailsService userDetailsService;
+	private grok.citysearch.common.mediator.CommodityExchange commodityExchange;
+	
+	@Autowired
+	public CityController( CityService cityService, UserDetailsService userDetailsService, CommodityExchange commodityExchange) {
+		this.cityService = cityService;
+		this.userDetailsService = userDetailsService;
+		this.commodityExchange = commodityExchange;
+	}
 
 	@RequestMapping("/cities")
 	public Page<City> findCities(@RequestParam(required = false) String name, Pageable pageable) {
@@ -37,11 +44,11 @@ public class CityController {
 	}
 
 	@RequestMapping(path = "cities/{cityId}/commodities", method = RequestMethod.POST)
-	public void giveCommodity(@PathVariable String cityId, @RequestParam(required = false) Commodity commodity) {
-		City city = cityService.get(cityId);
+	public void supplyCommodity(@PathVariable String cityId, @RequestParam(required = false) Long commodityId) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); // get logged in username
-		UserDetails user = userDetailsService.loadUserByUsername(name);
-		System.out.println(user.getUsername());
+		String username = auth.getName(); // get request user's username
+		UserDetails user = userDetailsService.loadUserByUsername(username);
+		commodityExchange.supplyCommodity(cityId, username, commodityId);
+		
 	}
 }

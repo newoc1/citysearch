@@ -1,13 +1,11 @@
-package grok.citysearch.repository;
+package grok.citysearch.security;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import grok.citysearch.model.ApplicationUser;
-
 @Repository
 public interface ApplicationUserRepository extends JpaRepository<ApplicationUser, Long> {
 
-	ApplicationUser findOneByUsername(String username);
+	public ApplicationUser findOneByUsername(String username);
 	
 }

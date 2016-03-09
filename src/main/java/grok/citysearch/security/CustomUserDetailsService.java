@@ -9,9 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import grok.citysearch.model.ApplicationUser;
-import grok.citysearch.repository.ApplicationUserRepository;
-
 @Service("customUserDetailsService")
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {

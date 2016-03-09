@@ -17,12 +17,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import grok.citysearch.model.Commodity;
-import grok.citysearch.model.solr.City;
-import grok.citysearch.repository.CommodityRepository;
-import grok.citysearch.repository.solr.CityRepository;
-import grok.citysearch.service.CityService;
-import grok.citysearch.solr_converter.CommodityConverter;
+import grok.citysearch.city.City;
+import grok.citysearch.city.CityRepository;
+import grok.citysearch.city.CityService;
+import grok.citysearch.commodity.Commodity;
+import grok.citysearch.commodity.CommodityConverter;
+import grok.citysearch.commodity.CommodityRepository;
 
 @Component
 public class CityLoader implements Loader {

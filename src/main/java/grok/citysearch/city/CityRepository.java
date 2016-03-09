@@ -1,12 +1,10 @@
-package grok.citysearch.repository.solr;
+package grok.citysearch.city;
 
 import java.util.Collection;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.solr.repository.SolrCrudRepository;
-
-import grok.citysearch.model.solr.City;
 
 public interface CityRepository extends SolrCrudRepository<City, String>{
 

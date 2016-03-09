@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import grok.citysearch.model.Commodity;
-import grok.citysearch.repository.CommodityRepository;
+import grok.citysearch.commodity.Commodity;
+import grok.citysearch.commodity.CommodityRepository;
 
 @Component
 public class CommodityLoader implements Loader {

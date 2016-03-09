@@ -1,4 +1,4 @@
-package grok.citysearch.model;
+package grok.citysearch.security;
 
 import java.util.Set;
 

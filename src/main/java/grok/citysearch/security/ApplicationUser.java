@@ -1,4 +1,4 @@
-package grok.citysearch.model;
+package grok.citysearch.security;
 
 import java.util.Set;
 
@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
 
 @Entity
+@Table(name = "User")
 public class ApplicationUser {
 
 	@Id

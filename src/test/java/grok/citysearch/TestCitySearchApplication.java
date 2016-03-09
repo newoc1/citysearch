@@ -30,14 +30,14 @@ import grok.citysearch.security.CustomUserDetailsService;
 
 @SpringBootApplication
 @EnableSolrRepositories("grok.citysearch")
-public class CitySearchApplication extends WebMvcConfigurerAdapter {
+public class TestCitySearchApplication extends WebMvcConfigurerAdapter {
 	static final String SOLR_HOST = "solr.host";
 
 	@Resource
 	private Environment environment;
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestCitySearchApplication.class, args);
+		SpringApplication.run(CitySearchApplication.class, args);
 	}
 
 	@Bean
@@ -48,6 +48,11 @@ public class CitySearchApplication extends WebMvcConfigurerAdapter {
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomUserDetailsService();
+	}
+
+	@Bean
+	public CityLoader cityLoader() {
+		return new CityLoader(100, 3, 10000000L);
 	}
 
 	@Bean

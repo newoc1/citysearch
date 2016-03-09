@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import grok.citysearch.model.ApplicationUser;
-import grok.citysearch.service.ApplicationUserService;
+import grok.citysearch.security.ApplicationUser;
+import grok.citysearch.security.ApplicationUserService;
 
 @Component
 public class ApplicationUserLoader implements Loader {

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import grok.citysearch.model.Commodity;
-import grok.citysearch.service.CommodityService;
+import grok.citysearch.commodity.Commodity;
+import grok.citysearch.commodity.CommodityService;
 
 @RestController
 public class CommodityController {
