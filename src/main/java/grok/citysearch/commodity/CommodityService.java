@@ -17,7 +17,20 @@ public class CommodityService {
 		return commodityRepository.findAll();
 	}
 	
+	/**
+	 * Find one Commodity by its {@link Long guid}
+	 * @param commodityId
+	 * @return
+	 */
 	public Commodity get(Long commodityId) {
 		return commodityRepository.getOne(commodityId);
+	}
+	/**
+	 * Find one commodity by its unique {@link String name}
+	 * @param commodityName
+	 * @return
+	 */
+	public Commodity get(String commodityName) {
+		return commodityRepository.findOneByName(commodityName);
 	}
 }

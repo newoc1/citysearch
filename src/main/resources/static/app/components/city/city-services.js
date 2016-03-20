@@ -20,7 +20,10 @@ cityServices.factory('City', ['$resource', '$rootElement',
     rest.cityCommodities = $resource('cities/:cityId/commodities', null, {
       give: {
         method: 'POST',
-        headers: headers
+        headers: headers,
+        params: {
+          cityId: ''
+        }
       }
     });
 

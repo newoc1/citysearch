@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import grok.citysearch.city.City;
 import grok.citysearch.commodity.Commodity;
@@ -30,7 +29,7 @@ public class User implements CommodityProvider{
 	@Column(name = "USERNAME", nullable=false)
 	private String username;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Commodity> ownedCommodities;
 
 	@Override
@@ -42,7 +41,6 @@ public class User implements CommodityProvider{
 	public void supplyCommodity(CommodityCourier commodityCourier, Commodity commodity, City city) {
 		if(hasCommodity(commodity)) {
 			CommodityDelivery commodityDelivery = createCommodityDelivery(commodity, city);
-			
 			ownedCommodities.remove(commodity);
 			commodityCourier.deliver(commodityDelivery);
 		}
@@ -57,6 +55,10 @@ public class User implements CommodityProvider{
 	 */
 	private CommodityDelivery createCommodityDelivery(Commodity commodity, City city){
 		return new CommodityDelivery(commodity, city);
+	}
+	
+	public void receive(Commodity commodity) {
+		this.ownedCommodities.add(commodity);
 	}
 
 	

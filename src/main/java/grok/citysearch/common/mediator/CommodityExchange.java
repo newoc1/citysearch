@@ -28,10 +28,15 @@ public class CommodityExchange {
 		this.commodityCourier = commodityCourier;
 	}
 	
-	public void supplyCommodity(String cityId, String username, Long commodityId) {
+	public void supplyCommodity(String cityId, String username, String commodityName) {
 		City city = cityService.get(cityId);
 		User user = userService.get(username);
-		Commodity commodity = commodityService.get(commodityId);
+		//HACK: remove this when we initialize users with the commodities they have
+		for(Commodity commodity:commodityService.find()) {
+			user.receive(commodity);
+		}
+		Commodity commodity = commodityService.get(commodityName);
 		user.supplyCommodity(commodityCourier, commodity, city);
+		
 	}
 }

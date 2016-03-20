@@ -5,9 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import grok.citysearch.city.City;
 import grok.citysearch.city.CityService;
+import grok.citysearch.commodity.Commodity;
 import grok.citysearch.common.mediator.CommodityExchange;
 
 
@@ -22,13 +22,11 @@ import grok.citysearch.common.mediator.CommodityExchange;
 public class CityController {
 
 	private CityService cityService;
-	private UserDetailsService userDetailsService;
-	private grok.citysearch.common.mediator.CommodityExchange commodityExchange;
+	private CommodityExchange commodityExchange;
 	
 	@Autowired
-	public CityController( CityService cityService, UserDetailsService userDetailsService, CommodityExchange commodityExchange) {
+	public CityController( CityService cityService, CommodityExchange commodityExchange) {
 		this.cityService = cityService;
-		this.userDetailsService = userDetailsService;
 		this.commodityExchange = commodityExchange;
 	}
 
@@ -44,11 +42,9 @@ public class CityController {
 	}
 
 	@RequestMapping(path = "cities/{cityId}/commodities", method = RequestMethod.POST)
-	public void supplyCommodity(@PathVariable String cityId, @RequestParam(required = false) Long commodityId) {
+	public void supplyCommodity(@PathVariable String cityId, @RequestBody Commodity commodity) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName(); // get request user's username
-		UserDetails user = userDetailsService.loadUserByUsername(username);
-		commodityExchange.supplyCommodity(cityId, username, commodityId);
-		
+		String username = auth.getName(); // get the request user's username
+		commodityExchange.supplyCommodity(cityId, username, commodity.getName());
 	}
 }

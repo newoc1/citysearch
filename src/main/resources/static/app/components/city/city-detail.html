@@ -2,7 +2,8 @@
 <div id="city-detail">
   <div id="city-detail-content">
     <h1>{{city.name}}</h1>
-    <div ng-repeat="wantedCommodity in city.wantedCommodityNames">{{wantedCommodity}}</div>
-      <button class="button-default" ng-click="giveCommodity(wantedCommodity.id)">Give Commodity</button>
+    <div ng-repeat="wantedCommodity in city.wantedCommodityNames">{{wantedCommodity}}
+      <button class="button-default" ng-click="giveCommodity(wantedCommodity)">Give Commodity</button>
+    </div>
   </div>
 </div>

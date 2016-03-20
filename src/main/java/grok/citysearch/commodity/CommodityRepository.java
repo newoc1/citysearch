@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommodityRepository extends JpaRepository<Commodity, Long> {
 
+	Commodity findOneByName(String name);
 }
