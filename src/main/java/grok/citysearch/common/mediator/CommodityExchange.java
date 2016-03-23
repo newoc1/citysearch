@@ -31,10 +31,6 @@ public class CommodityExchange {
 	public void supplyCommodity(String cityId, String username, String commodityName) {
 		City city = cityService.get(cityId);
 		User user = userService.get(username);
-		//HACK: remove this when we initialize users with the commodities they have
-		for(Commodity commodity:commodityService.find()) {
-			user.receive(commodity);
-		}
 		Commodity commodity = commodityService.get(commodityName);
 		user.supplyCommodity(commodityCourier, commodity, city);
 		

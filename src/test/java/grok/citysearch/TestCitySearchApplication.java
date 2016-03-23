@@ -6,16 +6,13 @@ import javax.annotation.Resource;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.ClassPathResource;
-
-import org.springframework.data.repository.init.Jackson2RepositoryPopulatorFactoryBean;
 import org.springframework.data.solr.core.SolrOperations;
 import org.springframework.data.solr.core.SolrTemplate;
+import org.springframework.data.solr.repository.Facet;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import grok.citysearch.loaders.CityLoader;
+import grok.citysearch.loaders.UserLoaderImpl;
 import grok.citysearch.security.ApplicationSecurity;
 import grok.citysearch.security.AuthenticationSecurity;
 import grok.citysearch.security.CustomUserDetailsService;
@@ -53,6 +51,11 @@ public class TestCitySearchApplication extends WebMvcConfigurerAdapter {
 	@Bean
 	public CityLoader cityLoader() {
 		return new CityLoader(100, 3, 10000000L);
+	}
+	
+	@Bean
+	public UserLoaderImpl userLoader() {
+		return new UserLoaderImpl(10);
 	}
 
 	@Bean
