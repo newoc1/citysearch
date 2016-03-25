@@ -40,11 +40,12 @@ public class City {
 		this.wantedCommodityNames = new HashSet<>();
 	}
 
-	public City(String name, long populationCount) {
+	public City(String name, long populationCount, int userRankRequired) {
 		this();
 		this.setId(id);
 		this.setName(name);
 		this.populationCount = populationCount;
+		this.userRankRequired = userRankRequired;
 	}
 
 	public String getName() {

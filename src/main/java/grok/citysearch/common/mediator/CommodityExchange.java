@@ -29,8 +29,9 @@ public class CommodityExchange {
 	}
 	
 	public void supplyCommodity(String cityId, String username, String commodityName) {
-		City city = cityService.get(cityId);
 		User user = userService.get(username);
+		City city = cityService.get(cityId, user.getRank());
+		
 		Commodity commodity = commodityService.get(commodityName);
 		user.supplyCommodity(commodityCourier, commodity, city);
 		

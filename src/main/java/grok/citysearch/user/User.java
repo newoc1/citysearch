@@ -29,6 +29,9 @@ public class User implements CommodityProvider {
 
 	@Column(name = "USERNAME", nullable = false)
 	private String username;
+	
+	@Column(name = "USER_RANK")
+	private Integer rank = 1;
 
     @ElementCollection
     @CollectionTable(name = "COMMODITY_SUPPLY")
@@ -67,5 +70,13 @@ public class User implements CommodityProvider {
 		} else {
 			ownedCommodities.put(commodity, 1);
 		}
+	}
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
 	}
 }

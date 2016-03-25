@@ -16,6 +16,7 @@ import grok.citysearch.city.City;
 import grok.citysearch.city.CityService;
 import grok.citysearch.commodity.Commodity;
 import grok.citysearch.common.mediator.CommodityExchange;
+import grok.citysearch.user.UserService;
 
 
 @RestController
@@ -23,22 +24,30 @@ public class CityController {
 
 	private CityService cityService;
 	private CommodityExchange commodityExchange;
+	private UserService userService;
 	
 	@Autowired
-	public CityController( CityService cityService, CommodityExchange commodityExchange) {
+	public CityController( CityService cityService, CommodityExchange commodityExchange, UserService userService) {
 		this.cityService = cityService;
 		this.commodityExchange = commodityExchange;
+		this.userService = userService;
 	}
 
 	@RequestMapping("/cities")
 	public Page<City> findCities(@RequestParam(required = false) String name, Pageable pageable) {
-		return cityService.findCities(name, pageable);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		Integer userRank = userService.getUserRank(username);
+		return cityService.findCities(name, userRank, pageable);
 	}
 
 	@RequestMapping("cities/{cityId}")
 	public City get(@PathVariable String cityId) {
 		System.out.println("Retrieving city");
-		return cityService.get(cityId);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		Integer userRank = userService.getUserRank(username);
+		return cityService.get(cityId, userRank);
 	}
 
 	@RequestMapping(path = "cities/{cityId}/commodities", method = RequestMethod.POST)

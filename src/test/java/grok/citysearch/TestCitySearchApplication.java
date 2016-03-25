@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import grok.citysearch.loaders.CityLoader;
+import grok.citysearch.loaders.UserLoader;
 import grok.citysearch.loaders.UserLoaderImpl;
 import grok.citysearch.security.ApplicationSecurity;
 import grok.citysearch.security.AuthenticationSecurity;
@@ -30,7 +31,8 @@ import grok.citysearch.security.CustomUserDetailsService;
 @EnableSolrRepositories("grok.citysearch")
 public class TestCitySearchApplication extends WebMvcConfigurerAdapter {
 	static final String SOLR_HOST = "solr.host";
-
+	//TODO: move to properties file
+	final int MAX_RANK = 3;
 	@Resource
 	private Environment environment;
 
@@ -50,12 +52,12 @@ public class TestCitySearchApplication extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public CityLoader cityLoader() {
-		return new CityLoader(100, 3, 10000000L);
+		return new CityLoader(100, 3, 10000000L,MAX_RANK);
 	}
 	
 	@Bean
-	public UserLoaderImpl userLoader() {
-		return new UserLoaderImpl(10);
+	public UserLoader userLoader() {
+		return new UserLoaderImpl(10,MAX_RANK);
 	}
 
 	@Bean

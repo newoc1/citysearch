@@ -41,11 +41,13 @@ public class CityLoader implements Loader {
 	private int numberOfCities;
 	private int cityCommoditiesCount;
 	private long maxPopulationCount;
+	private int maxRank;
 
-	public CityLoader(int numberOfCities, int cityCommoditiesCount, long maxPopulationCount){
+	public CityLoader(int numberOfCities, int cityCommoditiesCount, long maxPopulationCount, int maxRank){
 		this.numberOfCities = numberOfCities;
 		this.cityCommoditiesCount = cityCommoditiesCount;
 		this.maxPopulationCount = maxPopulationCount;
+		this.maxRank = maxRank;
 	}
 	/**
 	 * Assumes commodities are already loaded.
@@ -74,7 +76,7 @@ public class CityLoader implements Loader {
 					
 					if (cityName != null && !cityService.findCities(cityName,pageable).hasContent()) {
 						long populationCount = (long) (random.nextDouble()*maxPopulationCount);
-						City city = new City(cityName, populationCount);
+						City city = new City(cityName, populationCount, random.nextInt(maxRank));
 						Set<Commodity> wantedCommodities = chooseRandomCommodities(cityCommoditiesCount, availableCommodities);
 						
 						for(Commodity commodity: wantedCommodities) {

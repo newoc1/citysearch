@@ -17,6 +17,11 @@ public class UserService {
 		return userRepository.findOneByUsername(username);
 	}
 	
+	public Integer getUserRank(String username) {
+		User user = userRepository.findOneByUsername(username);
+		return user.getRank();
+	}
+	
 	public void update(User user){
 		userRepository.save(user);
 	}

@@ -11,8 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import grok.citysearch.commodity.Commodity;
-
 @Service
 public class CityService {
 
@@ -22,6 +20,7 @@ public class CityService {
 	@Autowired
 	private CityRepository cityRepository;
 
+
 	public Page<City> findCities(String name, Pageable pageable) {
 		Page<City> cities;
 		Collection<String> parsedNames = splitSearchTermAndRemoveIgnoredCharacters(name);
@@ -29,6 +28,18 @@ public class CityService {
 			cities = cityRepository.findByNameStartingWith(parsedNames, pageable);
 		} else {
 			cities = cityRepository.findAll(pageable);
+		}
+		return cities;
+
+	}
+	
+	public Page<City> findCities(String name, Integer userRankRequired, Pageable pageable) {
+		Page<City> cities;
+		Collection<String> parsedNames = splitSearchTermAndRemoveIgnoredCharacters(name);
+		if (name != null) {
+			cities = cityRepository.findByNameStartingWithAndUserRankRequiredLessThanEqual(parsedNames, userRankRequired, pageable);
+		} else {
+			cities = cityRepository.findByUserRankRequiredLessThanEqual(userRankRequired, pageable);
 		}
 		return cities;
 
@@ -55,6 +66,10 @@ public class CityService {
 		return result;
 	}
 
+	public City get(String cityId, Integer userRankRequired) {
+		return cityRepository.findOneByIdAndUserRankRequiredLessThanEqual(cityId, userRankRequired);
+	}
+	
 	public City get(String cityId) {
 		return cityRepository.findOne(cityId);
 	}

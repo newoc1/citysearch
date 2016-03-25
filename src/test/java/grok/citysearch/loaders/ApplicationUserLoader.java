@@ -14,8 +14,10 @@ public class ApplicationUserLoader implements Loader {
 	private ApplicationUserService applicationUserService;
 	@Override
 	public void populate() {
-		ApplicationUser applicationUser = new ApplicationUser("admin", "admin", "admincitysearch123@fakegmail.com", true);
-		applicationUserService.save(applicationUser);
+		ApplicationUser adminUser = new ApplicationUser("admin", "admin", "admincitysearch123@fakegmail.com", true);
+		ApplicationUser user1 = new ApplicationUser("user1", "a", "usercitysearch123@fakegmail.com", true);
+		applicationUserService.save(adminUser);
+		applicationUserService.save(user1);
 		
 	}
 
