@@ -45,8 +45,6 @@ cityControllers.controller('cityController', ['$scope', '$location', 'City', fun
 cityControllers.controller('cityDetailController', ['$scope', '$routeParams',
   'City',
   function($scope, $routeParams, City) {
-
-
     $scope.getCity = function() {
       City.rest.findCities.get({
         cityId: $routeParams.cityId
@@ -55,15 +53,21 @@ cityControllers.controller('cityDetailController', ['$scope', '$routeParams',
       });
     };
     $scope.getCity();
+  }
+]);
 
-    $scope.giveCommodity = function(commodityName) {
-      console.log($routeParams.cityId);
+cityControllers.controller('commodityController', ['$scope', '$routeParams',
+  'City',
+  function($scope, $routeParams, City) {
+    $scope.giveCommodity = function(wantedCommodity) {
       City.rest.cityCommodities.give({
         'cityId': $routeParams.cityId
       }, {
-        'name': commodityName
+        'name': wantedCommodity
       }, function() {
         $scope.getCity();
+      }, function(response) {
+        $scope.userHasCommodity = "noCommodity";
       });
     };
   }

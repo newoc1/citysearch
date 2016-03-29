@@ -12,7 +12,7 @@ public interface CityRepository extends SolrCrudRepository<City, String>{
 	
 	Page<City> findByNameStartingWithAndUserRankRequiredLessThanEqual(Collection<String> name, Integer userNameRequired, Pageable pageable);
 	
-	Page<City> findByUserRankRequiredLessThanEqual(Integer userNameRequried, Pageable pageable);
+	Page<City> findByUserRankRequiredLessThanEqual(Integer userNameRequired, Pageable pageable);
 	
 	City findOneByIdAndUserRankRequiredLessThanEqual(String id, Integer userNameRequired);
 }

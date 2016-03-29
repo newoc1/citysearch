@@ -2,8 +2,9 @@
 <div id="city-detail">
   <div id="city-detail-content">
     <h1>{{city.name}}</h1>
-    <div ng-repeat="wantedCommodity in city.wantedCommodityNames">{{wantedCommodity}}
-      <button class="button-default" ng-click="giveCommodity(wantedCommodity)">Give Commodity</button>
+    <div ng-repeat="wantedCommodity in city.wantedCommodityNames" ng-controller="commodityController">{{wantedCommodity}}
+      <button class="button-default" ng-click="giveCommodity(wantedCommodity)" ng-class="{noCommodity: userHasCommodity}" ng-disabled="userHasCommodity">Give Commodity</button>
+      <div ng-show="userHasCommodity">User does not have {{wantedCommodity}}</div>
     </div>
   </div>
 </div>

@@ -50,6 +50,8 @@ public class User implements CommodityProvider {
 			CommodityDelivery commodityDelivery = createCommodityDelivery(commodity, city);
 			ownedCommodities.put(commodity, ownedCommodities.get(commodity)-1);
 			commodityCourier.deliver(commodityDelivery);
+		} else {
+			throw new NoCommodityException("User does not have commodity"+commodity.getName());
 		}
 	}
 
