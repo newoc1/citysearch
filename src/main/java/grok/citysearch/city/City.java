@@ -30,6 +30,9 @@ public class City {
 	@Field("user_rank_required_i")
 	private int userRankRequired;
 	
+	@Field("city_points_reward_i")
+	private int cityPointsReward;
+	
 	@Field("wanted_commodity_names_ss")
 	private Set<String> wantedCommodityNames;
 	
@@ -40,12 +43,13 @@ public class City {
 		this.wantedCommodityNames = new HashSet<>();
 	}
 
-	public City(String name, long populationCount, int userRankRequired) {
+	public City(String name, long populationCount, int userRankRequired, int cityPointsReward) {
 		this();
 		this.setId(id);
 		this.setName(name);
 		this.populationCount = populationCount;
 		this.userRankRequired = userRankRequired;
+		this.cityPointsReward = cityPointsReward;
 	}
 
 	public String getName() {
@@ -91,5 +95,9 @@ public class City {
 
 	public void setPopulationCount(long populationCount) {
 		this.populationCount = populationCount;
+	}
+
+	public int getCityPointsReward() {
+		return cityPointsReward;
 	}
 }

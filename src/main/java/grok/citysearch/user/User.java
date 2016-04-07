@@ -32,7 +32,14 @@ public class User implements CommodityProvider {
 	
 	@Column(name = "USER_RANK")
 	private Integer rank = 1;
+	
+	@Column(name = "CITY_POINTS")
+	private Integer cityPoints = 0;
 
+	private User() {
+		this.rank = 1;
+		this.cityPoints = 0;
+	}
     @ElementCollection
     @CollectionTable(name = "COMMODITY_SUPPLY")
     @Column(name = "commodityCount")
@@ -80,5 +87,20 @@ public class User implements CommodityProvider {
 
 	public void setRank(Integer rank) {
 		this.rank = rank;
+	}
+	
+	public void setCityPoints(int cityPoints) {
+		this.cityPoints = cityPoints;
+	}
+	
+	public void addCityPoints(int cityPointsReward) {
+		this.cityPoints += cityPointsReward;
+	}
+	
+	public void calculateRank() {
+		int tempRank = cityPoints /100;
+		if(this.rank < tempRank){
+			this.rank = tempRank;
+		}
 	}
 }

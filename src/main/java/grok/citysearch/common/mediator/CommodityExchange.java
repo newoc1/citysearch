@@ -34,6 +34,8 @@ public class CommodityExchange {
 		
 		Commodity commodity = commodityService.get(commodityName);
 		user.supplyCommodity(commodityCourier, commodity, city);
+		user.addCityPoints(city.getCityPointsReward());
+		user.calculateRank();
 		
 	}
 }

@@ -41,6 +41,7 @@ public class UserLoaderImpl implements Loader, UserLoader{
 		Random random = new Random();
 		for(ApplicationUser applicationUser:applicationUserService.find()){
 			User user = userService.get(applicationUser.getUsername());
+			user.setCityPoints(0);
 			user.setRank(random.nextInt(maxRank));
 			for(int i = 0; i < numberOfCommodities; i++){
 				Commodity commodity = commodities.get(random.nextInt(commodities.size()));

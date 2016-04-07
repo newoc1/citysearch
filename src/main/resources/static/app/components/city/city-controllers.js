@@ -1,9 +1,16 @@
 var cityControllers = angular.module('cityControllers', []);
 
-cityControllers.controller('cityController', ['$scope', '$location', 'City', function(
-  $scope, $location, City) {
+cityControllers.controller('cityController', ['$scope', '$location', 'City', 'User', function(
+  $scope, $location, City, User) {
   $scope.page = 0;
   $scope.cityName = null;
+  $scope.getCurrentUser = function() {
+    User.rest.getCurrentUser.get(null, function(data) {
+      $scope.userRank = data.rank;
+    });
+  };
+
+
   $scope.findCities = function() {
     //Need to set cityName explicitly to null so that it is not parsed as a query param
     if (!$scope.cityName) {
@@ -40,6 +47,7 @@ cityControllers.controller('cityController', ['$scope', '$location', 'City', fun
   };
 
   $scope.findCities();
+  $scope.getCurrentUser();
 }]);
 
 cityControllers.controller('cityDetailController', ['$scope', '$routeParams',

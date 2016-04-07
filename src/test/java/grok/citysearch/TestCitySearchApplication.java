@@ -33,6 +33,8 @@ public class TestCitySearchApplication extends WebMvcConfigurerAdapter {
 	static final String SOLR_HOST = "solr.host";
 	//TODO: move to properties file
 	final int MAX_RANK = 3;
+	final int BASE_CITY_REWARD_POINTS = 50;
+	final int MAX_CITY_REWARD_POINTS = 100;
 	@Resource
 	private Environment environment;
 
@@ -52,7 +54,7 @@ public class TestCitySearchApplication extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public CityLoader cityLoader() {
-		return new CityLoader(100, 3, 10000000L,MAX_RANK);
+		return new CityLoader(100, 3, 10000000L,MAX_RANK, BASE_CITY_REWARD_POINTS, MAX_CITY_REWARD_POINTS);
 	}
 	
 	@Bean

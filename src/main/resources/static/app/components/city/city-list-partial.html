@@ -4,10 +4,12 @@
   <button class="button-default" ng-click="previousPage()" ng-hide="isFirstPage">Previous Page</button>
   <button class="button-default" ng-click="nextPage()" ng-hide="isLastPage">Next Page</button>
 </div>
+<div class="user-details">My Rank: {{userRank}}</div>
 <div class="city-container">
   <div class="city" ng-repeat="city in cities" ng-class="citySize(city)" ng-click="viewCity(city.id)">
     <div class="city-content">
        <h2><span>View {{city.name}}</span></h2>
+        <div>Rank: {{city.userRankRequired}}</div>
        <div>Population: {{city.populationCount}}</div>
        <div ng-repeat="wantedCommodity in city.wantedCommodityNames">{{wantedCommodity}}</div>
      </div>

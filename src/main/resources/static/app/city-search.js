@@ -1,7 +1,8 @@
 var citySearch = angular.module('citySearch', [
   'ngRoute',
   'cityControllers',
-  'cityServices'
+  'cityServices',
+  'userServices'
 ]);
 
 citySearch.config(['$routeProvider',
